@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="CSS/index.css" />  
+    <link rel="stylesheet" href="CSS/Pages/overview.css">
+    <link rel="stylesheet" href="CSS/Pages/history.css">
+    <link rel="stylesheet" href="CSS/CustomTags/circularProgressBar.css">
+    <link rel="stylesheet" href="CSS/Pages/settings.css">
+    <link rel="stylesheet" href="CSS/Pages/credits.css">
+
+    <script defer src="JS/CustomTags/circularProgressBar.js"></script>
+
+    <script defer src="JS/renderer.js"></script>
+    <script defer src="JS/pageManager.js"></script>
+    <script defer src="JS/Pages/overview.js"></script>
+    <script defer src="JS/Pages/history.js"></script>
+    <script defer src="JS/Pages/settings.js"></script>
+  </head>
+  <body>
+    <div class="app-window">
+      <section class="top">
+        <div class="logotext">Sentic</div>
+        <div class="menubar">
+          <button class='exit-button'></button>  
+        </div>
+      </section>
+      <section class="bottom">
+        <div class="tabscontainer">
+          <button autofocus class="menu-button" onclick="changePage(this); redrawGraph(); updateOverview();">Overview</button>
+          <button class="menu-button" onclick="changePage(this); resetHistory(); updateHistory();">History</button>
+          <button class="menu-button" onclick="changePage(this)">Settings</button>
+          <button class="menu-button" onclick="changePage(this)">Credits</button>
+        </div>
+        <div class="pagecontainer">
+          <section class="page overview">
+            <div class="current-quote">A true act of selfless love always sparks another.</div>
+            <div class="current-author">- Some Not So Wise Bird</div>
+
+            <div class="separator"></div>
+
+            <div class="time-data-holder">
+              <circular-progress-bar size="260"></circular-progress-bar>
+              <div class="frequency">Changing every X Unit</div>
+            </div>
+          </section>
+          <section class="page history disabled">
+            <div class="quotes-container">
+              <!-- <div class="quote">
+                <img src="C:\Users\iammu\Pictures\Sentic\Quote_30-08-2023.png" alt="" class="quote-image" />
+                <div class="quote-file-name-container">
+                  <input type="text" id="fileNameQuote_30-08-2023" placeholder="File Name" class="file-name-input">
+                </div>
+              </div> -->
+            </div>
+          </section>
+          <section class="page settings disabled">
+            <div class="container">
+              <div class="image-settings">
+                <span class="text">Wallpaper Size:</span>
+                <input type="text" id="widthSettingInput" class="width" placeholder="Width" onchange="changeWidth(this.value, this);">
+                <input type="text" id="heightSettingInput" class="height" placeholder="Height" onchange="changeHeight(this.value, this);">
+              </div>
+              <div class="text-settings">
+                <span class="text">Text Settings:</span>
+                <input type="text" id="textSizeSettingInput" placeholder="Font Size" onchange="changeQuoteFontSize(this.value, this);">
+                <input type="text" id="textColorSettingInput" placeholder="Color" onchange="changeQuoteFontColor(this.value, this);">
+              </div>
+              <div class="author-settings">
+                <span class="text">Author Settings:</span>
+                <input type="text" id="authorEnabledSetting" placeholder="Show Author" onchange="changeAuthorEnabled(this.value, this);">
+                <input type="text" id="authorQuoteOffsetSetting" placeholder="Offset" onchange="changeAuthorQuoteOffset(this.value, this)">
+              </div>
+              <div class="font-settings">
+                <span class="text">Font Settings:</span>
+                <input type="text" id="quoteFontSetting" placeholder="Quote Font" onchange="changeQuoteFont(this.value, this);">
+                <input type="text" id="authorFontSetting" placeholder="Author Font" onchange="changeAuthorFont(this.value, this);">
+              </div>
+              <div class="update-wallpaper-container">
+                <button class="update-wallpaper-button" onclick="updateWallpaper();">Update Wallpaper</button>
+              </div>
+            </div>
+          </section>
+          <section class="page credits disabled">
+            <div class="author-text">A project by MU.</div>
+            <div class="note">For any bug reports or feature requests use the github issues tab.</div>
+          </section>
+        <div>
+      </section>
+    </div>
+  </body>
+</html>
