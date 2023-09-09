@@ -1,27 +1,27 @@
 {
-    "time-data": {
-        "last-change": "Sat, 09 Sep 2023 15:53:29 GMT",
-        "change-frequency": "10000"
+  "time-data": {
+    "last-change": "Sat, 09 Sep 2023 15:53:29 GMT",
+    "change-frequency": "10000"
+  },
+  "file-paths": {
+    "quotes": "C:\\Users\\{user}\\Pictures\\Sentic\\"
+  },
+  "quote-data": {
+    "quote": "A true act of selfless love always sparks anoter.",
+    "author": "Some not so wise birb"
+  },
+  "settings": {
+    "wallpaper-size": {
+      "width": "screen",
+      "height": "screen"
     },
-    "file-paths": {
-        "quotes": "C:\\Users\\{user}\\Pictures\\Sentic\\"
+    "text": {
+      "size": "18",
+      "color": "EEEEEE"
     },
-    "quote-data": {
-        "quote": "A true act of selfless love always sparks anoter.",
-        "author": "Some not so wise birb"
-    },
-    "settings": {
-        "wallpaper-size": {
-            "width": "screen",
-            "height": "screen"
-        },
-        "text": {
-            "size": "18",
-            "color": "EEEEEE"
-        },
-        "display-author": true,
-        "author-quote-offset": "20",
-        "quote-font": "arial",
-        "author-font": "arial"
-    }
+    "display-author": true,
+    "author-quote-offset": "20",
+    "quote-font": "arial",
+    "author-font": "arial"
+  }
 }

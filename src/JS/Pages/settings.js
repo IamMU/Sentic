@@ -12,6 +12,8 @@ let authorQuoteOffsetInput = document.querySelector(
 let authorFontInput = document.querySelector("#authorFontSetting");
 let quoteFontInput = document.querySelector("#quoteFontSetting");
 
+let frequencyInput = document.querySelector("#frequencySetting");
+
 widthSettingInput.value = config["settings"]["wallpaper-size"]["width"];
 heightSettingInput.value = config["settings"]["wallpaper-size"]["height"];
 
@@ -24,6 +26,8 @@ authorQuoteOffsetInput.value = config["settings"]["author-quote-offset"];
 
 authorFontInput.value = config["settings"]["author-font"];
 quoteFontInput.value = config["settings"]["quote-font"];
+
+frequencyInput.value = config["time-data"]["change-frequency"];
 
 function updateSettings() {
   config = main.getConfig();
@@ -40,6 +44,8 @@ function updateSettings() {
 
   authorFontInput.value = config["settings"]["author-font"];
   quoteFontInput.value = config["settings"]["quote-font"];
+
+  frequencyInput.value = config["time-data"]["change-frequency"];
 }
 
 function changeWidth(width, input) {
@@ -147,6 +153,19 @@ function changeQuoteFont(font, input) {
   main.updateJsonValue("settings.quote-font", font);
 
   updateSettings();
+}
+
+function changeFrequency(frequency, input) {
+  try {
+    if (!isNumeric(frequency)) throw new Error("Not a valid frequency!");
+
+    main.updateJsonValue("time-data.change-frequency", frequency);
+
+    updateSettings();
+  } catch (err) {
+    input.value = config["time-data"]["change-frequency"];
+    console.error(err);
+  }
 }
 
 function isNumeric(str) {
