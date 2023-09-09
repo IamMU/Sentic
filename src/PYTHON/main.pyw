@@ -24,6 +24,50 @@ def hex_to_rgba(hex_color):
         raise ValueError("Invalid hex color code")
     return r, g, b, a
 
+
+def update_json_key(keys_path, new_value):
+    json_file_path = sys.argv[1]
+    
+    try:
+        # Open the JSON file for reading
+        with open(json_file_path, 'r') as json_file:
+            data = json.load(json_file)
+
+        # Traverse the nested dictionary to reach the desired key
+        current = data
+        for key in keys_path[:-1]:
+            if key in current:
+                current = current[key]
+            else:
+                raise KeyError(f"Key '{key}' not found in the JSON structure")
+
+        # Update the specified key with the new value
+        current[keys_path[-1]] = new_value
+
+        # Write the updated data back to the JSON file
+        with open(json_file_path, 'w') as json_file:
+            json.dump(data, json_file, indent=4)
+
+        print(f"Updated '{keys_path}' in '{json_file_path}' to '{new_value}'")
+    except FileNotFoundError:
+        print(f"File '{json_file_path}' not found.")
+    except KeyError as e:
+        print(f"Key error: {str(e)}")
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+
+
+
+def get_current_utc_timestamp():
+    # Get the current UTC time
+    current_utc_time = datetime.datetime.utcnow()
+
+    # Format it as a UTC timestamp string
+    utc_timestamp_str = current_utc_time.strftime('%a, %d %b %Y %H:%M:%S GMT')
+
+    return utc_timestamp_str
+
+
 # Vars
 CONFIG = json.load(open(sys.argv[1], "r"));
 
@@ -123,3 +167,6 @@ WALLPAPER_PATH = file_name  # Replace with the actual path to your image
 
 # Set the wallpaper
 ctypes.windll.user32.SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, WALLPAPER_PATH, 3)
+
+# Update change time
+update_json_key(["time-data", "last-change"], get_current_utc_timestamp())
