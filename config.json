@@ -20,8 +20,8 @@
       "color": "EEEEEE"
     },
     "display-author": true,
-    "author-quote-offset": "2",
-    "quote-font": "sanserif",
-    "author-font": "mono-space"
+    "author-quote-offset": "20",
+    "quote-font": "arial",
+    "author-font": "arial"
   }
 }

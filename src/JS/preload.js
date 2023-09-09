@@ -7,11 +7,12 @@ const fs = require("fs");
 const os = require("os");
 const { contextBridge } = require("electron");
 const { exec } = require("child_process");
+const { PythonShell } = require("python-shell");
+
+const configPath = "C:\\Projects\\Combined\\Sentic\\config.json";
 
 function getConfig() {
-  return JSON.parse(
-    fs.readFileSync("C:\\Projects\\Combined\\Sentic\\config.json", "utf-8")
-  );
+  return JSON.parse(fs.readFileSync(configPath, "utf-8"));
 }
 function getHistory() {
   let quotesPath = getConfig()["file-paths"]["quotes"].replace(
@@ -59,10 +60,7 @@ function openImage(imagePath) {
 function updateWriteJsonValue(keyPath, newValue) {
   try {
     // Read the JSON file synchronously
-    const data = fs.readFileSync(
-      "C:\\Projects\\Combined\\Sentic\\config.json",
-      "utf8"
-    );
+    const data = fs.readFileSync(configPath, "utf8");
 
     // Parse the JSON data
     const json = JSON.parse(data);
@@ -84,17 +82,30 @@ function updateWriteJsonValue(keyPath, newValue) {
     current[keys[keys.length - 1]] = newValue;
 
     // Write the updated JSON back to the file synchronously
-    fs.writeFileSync(
-      "C:\\Projects\\Combined\\Sentic\\config.json",
-      JSON.stringify(json, null, 2)
-    );
+    fs.writeFileSync(configPath, JSON.stringify(json, null, 2));
 
     console.log(
-      `Updated value at path ${keyPath} to ${newValue} in ${"C:\\Projects\\Combined\\Sentic\\config.json"}`
+      `Updated value at path ${keyPath} to ${newValue} in ${configPath}`
     );
   } catch (error) {
     console.error(`Error: ${error.message}`);
   }
+}
+
+function runScript() {
+  let options = {
+    pythonPath: path.join(process.cwd(), "Misc/PythonVenv/Scripts/python.exe"),
+    args: [configPath],
+  };
+
+  PythonShell.run(
+    path.join(process.cwd(), "src/PYTHON/main.pyw"),
+    options
+  ).then((messages) => {
+    messages.forEach((m) => console.log(`[ PYTHON ] ${m}`));
+  });
+
+  console.log("Options for python shell: " + JSON.stringify(options));
 }
 
 contextBridge.exposeInMainWorld("main", {
@@ -105,4 +116,5 @@ contextBridge.exposeInMainWorld("main", {
   renameFile: renameFile,
   openImage: openImage,
   updateJsonValue: updateWriteJsonValue,
+  runScript: runScript,
 });
