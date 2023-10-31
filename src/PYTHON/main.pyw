@@ -122,6 +122,7 @@ draw = ImageDraw.Draw(image)
 # Draw text to image
 text = get_quote()
 print(f"Quote: {text}")
+update_json_key(["quote-data", "quote"], text);
 
 # Get text size
 text_box = draw.textbbox((0, 0), text, font=font)
@@ -149,6 +150,8 @@ if display_author:
 
     # Draw the text
     draw.text(text_position, author_text, align="center", font=font, fill=text_color)
+
+update_json_key(["quote-data", "author"], get_author())
 
 dir_path = f"C:\\Users\\{os.getlogin()}\\Pictures\\Sentic"
 if not os.path.exists(dir_path):

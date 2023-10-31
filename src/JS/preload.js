@@ -9,11 +9,67 @@ const { contextBridge } = require("electron");
 const { exec } = require("child_process");
 const { PythonShell } = require("python-shell");
 
-const configPath = "C:\\Projects\\Combined\\Sentic\\config.json";
+const configPath = process.env.LOCALAPPDATA + "\\Sentic\\config.json";
 
 function getConfig() {
+  console.log("Getting config...");
+  checkCreateConfig();
+
   return JSON.parse(fs.readFileSync(configPath, "utf-8"));
 }
+function createNewConfig() {
+  if (fs.existsSync(configPath)) return;
+
+  // TODO: Replace with actual config
+  let obj = {
+    "time-data": {
+      "last-change": "Sun, 22 Oct 2023 14:46:27 GMT",
+      "change-frequency": "10000",
+    },
+    "file-paths": {
+      quotes: "C:\\Users\\{user}\\Pictures\\Sentic\\",
+    },
+    "quote-data": {
+      quote: "Nothing updated yet!",
+      author: "Sentic",
+    },
+    settings: {
+      "wallpaper-size": {
+        width: "screen",
+        height: "screen",
+      },
+      text: {
+        size: "18",
+        color: "EEEEEE",
+      },
+      "display-author": true,
+      "author-quote-offset": "20",
+      "quote-font": "arial",
+      "author-font": "arial",
+    },
+  };
+
+  console.log(`Adding new config to ${configPath}...`);
+
+  fs.writeFileSync(path.join(configPath), JSON.stringify(obj));
+
+  runScript();
+}
+function checkCreateConfig() {
+  if (!fs.existsSync(configPath)) {
+    console.log("Config not found!");
+
+    if (!fs.existsSync(process.env.LOCALAPPDATA + "\\Sentic")) {
+      console.log(
+        "Creating folder at " + process.env.LOCALAPPDATA + "\\Sentic"
+      );
+
+      fs.mkdirSync(path.join(process.env.LOCALAPPDATA, "\\Sentic"));
+    }
+    createNewConfig();
+  }
+}
+
 function getHistory() {
   let quotesPath = getConfig()["file-paths"]["quotes"].replace(
     "{user}",
