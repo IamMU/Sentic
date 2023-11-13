@@ -1,49 +1,50 @@
 .current-quote {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    width: 100%;
-    height: 20%;
+  width: 100%;
+  height: 20%;
 
-    color: #eee;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: medium;
-    font-weight: 300;
+  color: #eee;
+  font-family: "Courier New", Courier, monospace;
+  font-size: medium;
+  font-weight: 300;
 }
 
 .current-author {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 
-    width: 100%;
-    height: 10%;
+  width: 100%;
+  height: 10%;
 
-    color: #eee;
-    font-family: Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: .7rem;
-    font-weight: 100;
+  color: #eee;
+  font-family: Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  letter-spacing: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 100;
 }
 
 .time-data-holder {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    flex-direction: column;
+  flex-direction: column;
 
-    width: 100%;
-    height: 70%;
+  width: 100%;
+  height: 70%;
 
-    padding: 1rem;
+  padding: 1rem;
 }
 
 .frequency {
-    text-align: center;
+  text-align: center;
 
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: 400;
-    font-size: 1rem;
-    color: #eee;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #eee;
 }

@@ -176,6 +176,5 @@ function isBool(str) {
 }
 
 function updateWallpaper() {
-  // TODO: Update wallpaper
   main.runScript();
 }

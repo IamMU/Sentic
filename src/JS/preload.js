@@ -20,7 +20,6 @@ function getConfig() {
 function createNewConfig() {
   if (fs.existsSync(configPath)) return;
 
-  // TODO: Replace with actual config
   let obj = {
     "time-data": {
       "last-change": "Sun, 22 Oct 2023 14:46:27 GMT",
